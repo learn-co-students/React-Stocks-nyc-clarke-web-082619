@@ -1,21 +1,32 @@
 import React from 'react'
 
-const Stock = () => (
-  <div>
-
-    <div className="card">
-      <div className="card-body">
-        <h5 className="card-title">{
-            //Company Name
-          }</h5>
-        <p className="card-text">{
-            //ticker: stock price
-          }</p>
-      </div>
-    </div>
+class Stock extends React.Component {
 
 
-  </div>
-);
+  buyOrSell = () => {
+    if (this.props.isPortfolio){
+      this.props.sellStock(this.props.id);
+    } else {
+      this.props.addToPortfolio(this.props.id)
+    }
+  }
+
+  render(){
+    return(
+        <div>
+          <div className="card" onClick={this.buyOrSell}>
+            <div className="card-body">
+              <h5 className="card-title">{
+                  this.props.name
+                }</h5>
+              <p className="card-text">{
+                  this.props.ticker
+                }: {this.props.price}</p>
+            </div>
+          </div>
+          </div>
+          )
+        }
+      }
 
 export default Stock
